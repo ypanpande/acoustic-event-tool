@@ -25,7 +25,24 @@ class RcfdViewer:
     def __init__(self, root):
 
 #==============================================================================        
+    def create_sourcefile_display(self):
+        self.source_display_frame = tk.Frame(self.root, height = 820 , width  = 430, relief = 'ridge', borderwidth = 1)
+        self.source_display_frame.place(x = 5, y = 70, width = 430, height = 820)
+        
+        bsource = ttk.Button(self.source_display_frame, text = "Source folder", command = self.rcdf_input)
+        bsource.place(x = 5, y = 5, width = 90, height = 25)        
 
+        self.lsource = ttk.Label(self.source_display_frame, text = self.default_source_folder, background = "white")
+        self.lsource.place(x = 100, y = 5, width = 325, height = 25)
+        
+        ttk.Label(self.source_display_frame, text = "Rcdf files:").place(x = 5, y = 40,  width = 420, height = 25)      
+        self.sdisplay = tk.scrolledtext.ScrolledText(master = self.source_display_frame, 
+                                                     wrap =tk.WORD, font=("Helvetica", 10),
+                                                     state = 'disabled')
+        self.sdisplay.place(x = 5, y = 70,  width = 420, height = 750)
+        
+        self.sdisplay.bind('<Double-Button-1>', self.rcdf_event_input)
+        
     def create_top_menu_bar(self):
         self.topbar_frame = tk.Frame(self.root, height = 60 , width  = 1630, relief = 'ridge', borderwidth = 1)
         self.topbar_frame.place(x = 5, y = 5, width = 1630, height = 60)
@@ -45,24 +62,7 @@ class RcfdViewer:
 #        self.prog = ttk.Progressbar(self.topbar_frame, orient = 'horizontal', mode='determinate', length = 200, maximum = 100)
 #        self.prog.place(x = 665, y = 10, width = 200, height = 30)
         
-    def create_sourcefile_display(self):
-        self.source_display_frame = tk.Frame(self.root, height = 820 , width  = 430, relief = 'ridge', borderwidth = 1)
-        self.source_display_frame.place(x = 5, y = 70, width = 430, height = 820)
-        
-        bsource = ttk.Button(self.source_display_frame, text = "Source folder", command = self.rcdf_input)
-        bsource.place(x = 5, y = 5, width = 90, height = 25)		
 
-        self.lsource = ttk.Label(self.source_display_frame, text = self.default_source_folder, background = "white")
-        self.lsource.place(x = 100, y = 5, width = 325, height = 25)
-        
-        ttk.Label(self.source_display_frame, text = "Rcdf files:").place(x = 5, y = 40,  width = 420, height = 25)		
-        self.sdisplay = tk.scrolledtext.ScrolledText(master = self.source_display_frame, 
-                                                     wrap =tk.WORD, font=("Helvetica", 10),
-                                                     state = 'disabled')
-        self.sdisplay.place(x = 5, y = 70,  width = 420, height = 750)
-        
-        self.sdisplay.bind('<Double-Button-1>', self.rcdf_event_input)
-        
     def create_eventfile_display(self):
         event_display_frame = tk.Frame(self.root, height = 820 , width  = 270, relief = 'ridge', borderwidth = 1)
         event_display_frame.place(x = 445, y = 70, width = 270, height = 820)
