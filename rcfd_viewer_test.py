@@ -42,7 +42,17 @@ class RcfdViewer:
         self.sdisplay.place(x = 5, y = 70,  width = 420, height = 750)
         
         self.sdisplay.bind('<Double-Button-1>', self.rcdf_event_input)
+    def create_eventfile_display(self):
+        event_display_frame = tk.Frame(self.root, height = 820 , width  = 270, relief = 'ridge', borderwidth = 1)
+        event_display_frame.place(x = 445, y = 70, width = 270, height = 820)
         
+        ttk.Label(event_display_frame, text = "Event files:").place(x = 5, y = 5,  width = 260, height = 25)        
+        self.edisplay = tk.scrolledtext.ScrolledText(master = event_display_frame, 
+                                                     wrap =tk.WORD, font=("Helvetica", 10),
+                                                     state = 'disabled')
+        self.edisplay.place(x = 5, y = 35,  width = 260, height = 785)
+        
+        self.edisplay.bind('<Double-Button-1>', self.show_event_plot)        
     def create_top_menu_bar(self):
         self.topbar_frame = tk.Frame(self.root, height = 60 , width  = 1630, relief = 'ridge', borderwidth = 1)
         self.topbar_frame.place(x = 5, y = 5, width = 1630, height = 60)
@@ -63,17 +73,7 @@ class RcfdViewer:
 #        self.prog.place(x = 665, y = 10, width = 200, height = 30)
         
 
-    def create_eventfile_display(self):
-        event_display_frame = tk.Frame(self.root, height = 820 , width  = 270, relief = 'ridge', borderwidth = 1)
-        event_display_frame.place(x = 445, y = 70, width = 270, height = 820)
-        
-        ttk.Label(event_display_frame, text = "Event files:").place(x = 5, y = 5,  width = 260, height = 25)		
-        self.edisplay = tk.scrolledtext.ScrolledText(master = event_display_frame, 
-                                                     wrap =tk.WORD, font=("Helvetica", 10),
-                                                     state = 'disabled')
-        self.edisplay.place(x = 5, y = 35,  width = 260, height = 785)
-        
-        self.edisplay.bind('<Double-Button-1>', self.show_event_plot)
+
 
     def create_event_figure_display(self):
         self.event_figure_display_frame = tk.Frame(self.root, height = 400 , width  = 910, relief = 'ridge', borderwidth = 1)
