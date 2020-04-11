@@ -73,16 +73,16 @@ class RcfdViewer:
 #        self.prog.place(x = 665, y = 10, width = 200, height = 30)
         
 
+    def create_acc_figure_display(self):
+        self.acc_figure_display_frame = tk.Frame(self.root, height = 400 , width  = 910, relief = 'ridge', borderwidth = 1)
+        self.acc_figure_display_frame.place(x = 725, y = 490, width = 910, height = 400)
+
 
 
     def create_event_figure_display(self):
         self.event_figure_display_frame = tk.Frame(self.root, height = 400 , width  = 910, relief = 'ridge', borderwidth = 1)
         self.event_figure_display_frame.place(x = 725, y = 70, width = 910, height = 400)
 
-
-    def create_acc_figure_display(self):
-        self.acc_figure_display_frame = tk.Frame(self.root, height = 400 , width  = 910, relief = 'ridge', borderwidth = 1)
-        self.acc_figure_display_frame.place(x = 725, y = 490, width = 910, height = 400)
 
 #==============================================================================
 #===================================================================================
