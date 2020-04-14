@@ -92,9 +92,7 @@ class RcfdViewer:
         self.t = tk.Toplevel(self.topbar_frame, height = 800, width = 1300)
         self.t.title('FFT Plot Window for Event {}'.format(self.current_efile))
         self.show_event_fft()
-    def show_event_fft(self):
-        self.create_event_fft()
-        self.embed_event_fft()
+
     def create_event_fft(self):
         ef = self.get_event_data(self.file_path, self.current_efile) # data form dict
         efd = Character(ef,0.004)
