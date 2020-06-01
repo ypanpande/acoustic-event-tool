@@ -89,15 +89,15 @@ class RcfdViewer:
 #       topmenu_bar functions
 #================================================================================
     def event_fft(self):
-        self.t = tk.Toplevel(self.topbar_frame, height = 800, width = 1300)
-        self.t.title('FFT Plot Window for Event {}'.format(self.current_efile))
-        self.show_event_fft()
 
     def create_event_fft(self):
         ef = self.get_event_data(self.file_path, self.current_efile) # data form dict
         efd = Character(ef,0.004)
         self.af2 = Figure(figsize=(16, 8), dpi=100)
         self.af2.suptitle('FFT of event: {}'.format(self.current_efile), fontsize = 12)
+        self.t = tk.Toplevel(self.topbar_frame, height = 800, width = 1300)
+        self.t.title('FFT Plot Window for Event {}'.format(self.current_efile))
+        self.show_event_fft()
 
         for i, k in enumerate(sorted(efd._data.keys())):
             f = efd.AmpFre_FFT(efd._data[k])
