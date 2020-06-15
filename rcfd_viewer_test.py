@@ -83,13 +83,6 @@ class RcfdViewer:
         self.event_figure_display_frame = tk.Frame(self.root, height = 400 , width  = 910, relief = 'ridge', borderwidth = 1)
         self.event_figure_display_frame.place(x = 725, y = 70, width = 910, height = 400)
 
-
-#==============================================================================
-#===================================================================================
-#       topmenu_bar functions
-#================================================================================
-    def event_fft(self):
-
     def create_event_fft(self):
         ef = self.get_event_data(self.file_path, self.current_efile) # data form dict
         efd = Character(ef,0.004)
@@ -109,6 +102,13 @@ class RcfdViewer:
 #            aa.set_xlim([0, 125000])
             aa.legend(loc = 'upper right')
             aa.grid(True)
+#==============================================================================
+#===================================================================================
+#       topmenu_bar functions
+#================================================================================
+    def event_fft(self):
+
+
         
     def embed_event_fft(self):
         self.event_fft_canvas_frame = tk.Frame(self.t )
