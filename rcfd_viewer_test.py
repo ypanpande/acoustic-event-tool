@@ -112,14 +112,7 @@ class RcfdViewer:
         
     def embed_event_fft(self):
         self.event_fft_canvas_frame = tk.Frame(self.t )
-        self.event_fft_canvas_frame.pack(side=tk.TOP,fill=tk.BOTH, expand=1)
-        canvas = FigureCanvasTkAgg(self.af2, master=self.event_fft_canvas_frame)
-        canvas.draw()
-        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-        self.event_fft_toolbar_frame = tk.Frame(self.t)
-        self.event_fft_toolbar_frame.pack(fill=tk.BOTH, expand=1)
-        toolbar = NavigationToolbar2Tk(canvas, self.event_fft_toolbar_frame)
-        toolbar.update()
+
         
 #========================================================================================
     def event_acc_info(self):
