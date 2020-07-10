@@ -37,9 +37,6 @@ class Location(EventInfo):
         # stop criterion res < epsilon = 1.0e-2;
         #epsilon=1.0e-2;
 
-        t_ini = min(dobs)
-        index = dobs.index(t_ini)
-        
         # delta time to channel 1
     #    delta = []
     #    for dt_loop in dobs:
