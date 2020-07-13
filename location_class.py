@@ -72,14 +72,7 @@ class Location(EventInfo):
             hornum = int(np.round((areabottom[0] - areatop[0])/block))
             vernum = int(np.round((areatop[1] - areabottom[1])/block))
                 
-            rmsdd = np.ones((hornum, vernum))
-            t0 = np.zeros((hornum, vernum))
-            for i in range(vernum):
-                for j in range(hornum):
-                    x = areatop[0] + block/2 + j*block
-                    y = areabottom[1] + block/2 + i*block
-                    a = [x,y]
-                    
+
                     dcal = [0]*N
                     for sensornum in range(N):
                         dx = a[0] - sx[sensornum]
