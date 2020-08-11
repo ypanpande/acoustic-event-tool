@@ -73,11 +73,7 @@ class Location(EventInfo):
             vernum = int(np.round((areatop[1] - areabottom[1])/block))
                 
 
-                    dcal = [0]*N
-                    for sensornum in range(N):
-                        dx = a[0] - sx[sensornum]
-                        dy = a[1] - sy[sensornum]
-eightv)
+
                         # calculate time to sensors
                         dcal[sensornum] = distance/vel
                         
