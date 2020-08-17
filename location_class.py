@@ -100,10 +100,7 @@ class Location(EventInfo):
                 print('Seq6s: the minimum RES is {}, the result is bad'.format(vmin))
                 addToRow = [None, None, None, vmin, aver_dd, t_ini, index]
     
-            else:
-                print('Seq6s: the result RES is {}'.format(vmin))
-                #print(addToRow)
-                #Common.printl(self.fatherPath, addToRow)
+
             
         else: 
             print('Seq6s: not all {} sensor are working.'.format(N))
