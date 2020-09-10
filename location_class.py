@@ -88,7 +88,6 @@ class Location(EventInfo):
             
             # find the index and value of the mininum rms of delta time
             vmin = rmsdd.min()
-            minindex = np.unravel_index(rmsdd.argmin(),rmsdd.shape)
             # calculate the position
             xmin = areatop[0] + block/2 + minindex[0]*block
             ymin = areabottom[1] + block/2 + minindex[1]*block
