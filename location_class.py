@@ -105,7 +105,7 @@ class Location(EventInfo):
             print('Seq6s: not all {} sensor are working.'.format(N))
             addToRow = [None, None, None, None, None, None, None]
             
-        keys = ['x','y','t0','res','aver_res','tmin','ch_index']
+
         
         outSeq6s = {item: addToRow[i] for i, item in enumerate(keys)}
         
