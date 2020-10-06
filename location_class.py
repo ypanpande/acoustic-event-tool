@@ -123,12 +123,7 @@ class Location(EventInfo):
         
         #sx_all = [5, 0, 505, 550, -1650, -1650];
         #sy_all = [1555,0, 1482.5,82.5,1552.5, -2.5];
-        sx_all = self.SX
-        sy_all = self.SY
-        #velocity component
-        #v45 = [4000, 2900]
-        #v01 = [4000, 2650]
-        #v23 = [4000, 2000]
+
         v45 = self.V45
         v01 = self.V01
         v23 = self.V23
