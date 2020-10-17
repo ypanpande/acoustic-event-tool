@@ -166,28 +166,7 @@ class Location(EventInfo):
             sy = sy_all[:4]
             dobs = dobs_temp[:4]
             v0 = v23
-        elif index == 3:
-            areatop = [220,800]
-            areabottom = [1200,-400]
-            sx = sx_all[:4]
-            sy = sy_all[:4]
-            dobs = dobs_temp[:4]
-            v0 = v23
-        elif index == 4:
-            areatop = [-2000,2000]
-            areabottom = [-800,740]
-            sx = sx_all[:2] + sx_all[4:]
-            sy = sy_all[:2] + sy_all[4:]
-            dobs = dobs_temp[:2] + dobs_temp[4:]
-            v0 = v45
-        else:
-            areatop = [-2000,800]
-            areabottom = [-800,-400]
-            sx = sx_all[:2] + sx_all[4:]
-            sy = sy_all[:2] + sy_all[4:]
-            dobs = dobs_temp[:2] + dobs_temp[4:]
-            v0 = v45
-        
+
         # delta time to channel 1
     #    delta = []
     #    for dt_loop in dobs:
