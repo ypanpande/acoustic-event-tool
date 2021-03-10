@@ -36,7 +36,18 @@ class Location(EventInfo):
         
         # stop criterion res < epsilon = 1.0e-2;
         #epsilon=1.0e-2;
-
+        
+        #clean the empty result and the bad results
+        #colres = 5; # the column number of rms in the dataset
+        #maxres = 0.05; # the threshold of rms
+        
+        # the onset time 
+        #dobs = [4.032, 3.956, 4.136, 4.116, 3.864, 3.736]
+        #dobs = Onset_time(data, V)
+        # sensor of the first arrival
+        t_ini = min(dobs)
+        index = dobs.index(t_ini)
+        
         # delta time to channel 1
     #    delta = []
     #    for dt_loop in dobs:
@@ -72,8 +83,23 @@ class Location(EventInfo):
             hornum = int(np.round((areabottom[0] - areatop[0])/block))
             vernum = int(np.round((areatop[1] - areabottom[1])/block))
                 
-
-
+            rmsdd = np.ones((hornum, vernum))
+            t0 = np.zeros((hornum, vernum))
+            for i in range(vernum):
+                for j in range(hornum):
+                    x = areatop[0] + block/2 + j*block
+                    y = areabottom[1] + block/2 + i*block
+                    a = [x,y]
+                    
+                    dcal = [0]*N
+                    for sensornum in range(N):
+                        dx = a[0] - sx[sensornum]
+                        dy = a[1] - sy[sensornum]
+                        #distance to sensors
+                        distance = np.sqrt(dx**2 + dy**2)
+                        weightv = np.absolute([dx,dy])
+                        velweight = v0*weightv
+                        vel = sum(velweight)/sum(weightv)
                         # calculate time to sensors
                         dcal[sensornum] = distance/vel
                         
@@ -88,6 +114,7 @@ class Location(EventInfo):
             
             # find the index and value of the mininum rms of delta time
             vmin = rmsdd.min()
+            minindex = np.unravel_index(rmsdd.argmin(),rmsdd.shape)
             # calculate the position
             xmin = areatop[0] + block/2 + minindex[0]*block
             ymin = areabottom[1] + block/2 + minindex[1]*block
@@ -99,13 +126,16 @@ class Location(EventInfo):
                 print('Seq6s: the minimum RES is {}, the result is bad'.format(vmin))
                 addToRow = [None, None, None, vmin, aver_dd, t_ini, index]
     
-
+            else:
+                print('Seq6s: the result RES is {}'.format(vmin))
+                #print(addToRow)
+                #Common.printl(self.fatherPath, addToRow)
             
         else: 
             print('Seq6s: not all {} sensor are working.'.format(N))
             addToRow = [None, None, None, None, None, None, None]
             
-
+        keys = ['x','y','t0','res','aver_res','tmin','ch_index']
         
         outSeq6s = {item: addToRow[i] for i, item in enumerate(keys)}
         
@@ -123,7 +153,12 @@ class Location(EventInfo):
         
         #sx_all = [5, 0, 505, 550, -1650, -1650];
         #sy_all = [1555,0, 1482.5,82.5,1552.5, -2.5];
-
+        sx_all = self.SX
+        sy_all = self.SY
+        #velocity component
+        #v45 = [4000, 2900]
+        #v01 = [4000, 2650]
+        #v23 = [4000, 2000]
         v45 = self.V45
         v01 = self.V01
         v23 = self.V23
@@ -166,7 +201,28 @@ class Location(EventInfo):
             sy = sy_all[:4]
             dobs = dobs_temp[:4]
             v0 = v23
-
+        elif index == 3:
+            areatop = [220,800]
+            areabottom = [1200,-400]
+            sx = sx_all[:4]
+            sy = sy_all[:4]
+            dobs = dobs_temp[:4]
+            v0 = v23
+        elif index == 4:
+            areatop = [-2000,2000]
+            areabottom = [-800,740]
+            sx = sx_all[:2] + sx_all[4:]
+            sy = sy_all[:2] + sy_all[4:]
+            dobs = dobs_temp[:2] + dobs_temp[4:]
+            v0 = v45
+        else:
+            areatop = [-2000,800]
+            areabottom = [-800,-400]
+            sx = sx_all[:2] + sx_all[4:]
+            sy = sy_all[:2] + sy_all[4:]
+            dobs = dobs_temp[:2] + dobs_temp[4:]
+            v0 = v45
+        
         # delta time to channel 1
     #    delta = []
     #    for dt_loop in dobs:
