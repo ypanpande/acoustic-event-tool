@@ -23,14 +23,7 @@ def main():
     
 class RcfdViewer:
     def __init__(self, root):
-        self.root = root
-        self.default_source_folder = 'Z://RosemB//measmode01'
-        
-        self.root.geometry("1640x920+30+30")
-        self.root.title('Rcfd Data Reviewer')
-        
-        self.init_gui()
-        self.HltIn = tk.StringVar()
+
 #==============================================================================        
 
     def create_top_menu_bar(self):
